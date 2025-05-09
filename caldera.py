@@ -249,6 +249,7 @@ def InspectPlayerPaths(stage) -> None:
         sample_time = time_scale*(time_sample/fps)
         print(f"at {sample_time:.2f} seconds, the position is {values[i]}")
 
+
 def InspectEndpoints(stage):
     """
     Inspects the endpoints of players in a stage.
@@ -279,29 +280,30 @@ def InspectEndpoints(stage):
     
     print(f"the longest a player lasted was {max_time/1000.0:.2f} seconds, the position at that time was {position_at_max_time}")
 
+
 if __name__ == "__main__":
 
     print("opening mp_wz_island")
-    stage = EditStage("./caldera.usda", "./map_source/mp_wz_island.usd" )
+    stage = EditStage("./caldera.usda", "./map_source/mp_wz_island.usd")
 
     print("collecting statistics")
     print(json.dumps(CountPrims(stage), indent=4))
 
-    print("setting the variants to proxy")
-    SetVariantSets(stage, "proxy")
+    # print("setting the variants to proxy")
+    # SetVariantSets(stage, "full")
 
-    print("adding the camera layer")
-    AddSublayer(stage, "./layers/cameras.usd")
+    # print("adding the camera layer")
+    # AddSublayer(stage, "./layers/cameras.usd")
 
-    print("adding player data")
-    AddSublayer(stage, "./layers/breadcrumbs.usd")
-    AddSublayer(stage, "./layers/endpoints.usd")
+    # print("adding player data")
+    # AddSublayer(stage, "./layers/breadcrumbs.usd")
+    # AddSublayer(stage, "./layers/endpoints.usd")
 
-    print("saving the new stage")
-    stage.GetRootLayer().Save()
+    # print("saving the new stage")
+    # stage.GetRootLayer().Save()
 
-    print("looking at the player paths")
-    InspectPlayerPaths(Usd.Stage.Open("./layers/breadcrumbs.usd"))
+    # print("looking at the player paths")
+    # InspectPlayerPaths(Usd.Stage.Open("./layers/breadcrumbs.usd"))
 
-    print("looking at the endpoints")
-    InspectEndpoints(Usd.Stage.Open("./layers/endpoints.usd"))
+    # print("looking at the endpoints")
+    # InspectEndpoints(Usd.Stage.Open("./layers/endpoints.usd"))
